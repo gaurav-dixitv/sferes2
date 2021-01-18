@@ -73,6 +73,7 @@ def options(opt):
     opt.add_option('--includes', action='append', type='string', help='add an include path, e.g. /home/mandor/include', dest='includes')
     opt.add_option('--libs', action='append', type='string', help='add a lib path, e.g. /home/mandor/lib', dest='libs')
     opt.add_option('--cpp14', type='string', help='force / disable c++-14 compilation [--cpp14=yes]', dest='cpp14')
+    opt.add_option('--cpp17', type='string', help='force / disable c++-17 compilation [--cpp17=yes]', dest='cpp17')
 
     opt.add_option('--no-asserts', action='store_true', default=False, help='disable asserts [--no-asserts]', dest='no_asserts')
 
@@ -183,6 +184,8 @@ def configure(conf):
     conf.env['CXXFLAGS'] += ['-std=c++11']
     if conf.options.cpp14 == 'yes':
         conf.env['CXXFLAGS'] += ['-std=c++14']
+    if conf.options.cpp17 == 'yes':
+        conf.env['CXXFLAGS'] += ['-std=c++17']
     if conf.options.includes :
         for inlcude_dir in conf.options.includes:
             conf.env['CXXFLAGS'] += [" -I" + inlcude_dir]
